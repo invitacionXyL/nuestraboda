@@ -70,13 +70,13 @@ body {
 }
 /* Contenedor 3D */
 .container {
-    margin-top: 5%;
+    margin-top: 7%;
     perspective: 1000px;
 }
 
 /* Flip Card */
 .flip-card {
-    width: clamp(280px, 90vw, 600px);
+    width: clamp(280px, 50vw, 550px);
     /* Eliminar la propiedad height: height: clamp(180px, 38vh, 400px); */
     position: relative;
     transform-style: preserve-3d;
@@ -450,5 +450,6 @@ body {
         background-size: clamp(520px, 60vw, 520px) clamp(200px, 25vh, 200px);
     }
 }
+
 
 
