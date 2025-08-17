@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Yo12wWUeC8X1h7YlNv0oBv6f9/V5WtM2PAE9mRiFQwF6f3QJnI6HscfrF3YhQ7PwChDL8AJ+ScGdgLZcQuZmCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="escenario">
+    <div class="container">
+        <div class="flip-card" id="flipCard">
+            <div class="flip-card-inner">
+                <div id="flip-card-front" class="flip-card-front llama-la-atencion2">
+                    <svg width="300" height="200" role="img" aria-labelledby="title desc" style="overflow: visible;" >
+                    <title>Texto circular para nombres</title>
+                    <desc>Texto circular "Xenia Rosa & Luis Mena" arriba, iniciales grandes "XL" en cursiva en medio, y "Octubre 2025" circular abajo</desc>
+                    
+                    <!-- Texto superior circular -->
+                    <defs>
+                        <path id="top-circle" d="M 154,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+                        <path id="bottom-circle" d="M 158,120 m -80,0 a 80,80 0 1,0 160,0 a 80,80 0 1,0 -160,0" />
+                    </defs>
+                    <text fill="#A098BA" font-family="Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="1" text-transform="uppercase">
+                        <textPath startOffset="25%" text-anchor="middle" href="#top-circle">
+                        XENIA ROSA &amp; LUIS MENA
+                        </textPath>
+                    </text>
+
+                    <!-- Iniciales centrales -->
+                    <text x="125" y="120" text-anchor="middle" fill="#A098BA" font-family="'Roshiaty', cursive" font-size="125" dominant-baseline="middle" font-weight="2">
+                        X
+                    </text>
+                    <text x="185" y="140" text-anchor="middle" fill="#A098BA" font-family="'Roshiaty', cursive" font-size="125" dominant-baseline="middle" font-weight="2">
+                        L
+                    </text>
+                    <!-- Texto inferior circular -->
+                    <text  fill="#A098BA" font-family="Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="1" text-transform="uppercase">
+                        <textPath startOffset="25%" text-anchor="middle" href="#bottom-circle">
+                        O&nbsp;C&nbsp;T&nbsp;U&nbsp;B&nbsp;R&nbsp;E&nbsp;&nbsp;&nbsp;2&nbsp;0&nbsp;2&nbsp;5 
+                        </textPath>
+                    </text>
+                    </svg>
+                </div>
+                <div class="flip-card-back">  <!-- botón -->
+                        <button id="btnsello" class="sello-btn" aria-label="Sello">
+                            <img class="sello-img" src="sello.png" alt="Sello">
+                        </button>
+                    <div class="card-sobre">
+        <!-- Solapa superior -->
+                        <div class="card-sobre">
+                        <div class="contenedor-imagen">
+                            <div class="imagen-con-margen"></div>
+                        </div>      
+                        <div class="top-flap" id="topFlap">
+                            <div class="top-front">
+                            </div>
+                            <div class="top-back">
+                            <div class="imagentop"></div>
+                            </div>
+                        </div>
+
+                        <!-- Solapa inferior -->
+                        <div class="bottom-flap" id="bottomFlap">
+                            <div class="bottom-front"></div>
+                            <div class="bottom-back">
+                                <div class="tarjetas">
+                                    <div class="slot-tarjeta llama-la-atencion" data-name="recepcion">
+                                        <div class="slot-tarjeta-bg"></div>
+                                        <div class="card-tarjeta"> 
+                                            <div class="tab-tarjeta">Recepción</div>
+                                            <div class="content-tarjeta">
+                                                <div class="date">04.OCT.25</div>
+                                                <div class="location" href="#" onclick="document.getElementById('mapModal').style.display='block'">
+                                                <p>MOUNDS VIEW COMMUNITY CENTER <i class="fa-solid fa-location-dot" style="color: #918ABD;"></i></p>
+                                                </div>
+                                                <div class="ubi">
+                                                5394 EDGEWOOD DR MOUNDS VIEW, MN 55112<br>
+                                                </div>
+                                                <div class="hora">
+                                                4:00 PM
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="slot-tarjeta llama-la-atencion" data-name="obsequios">
+                                        <div class="slot-tarjeta-bg"></div>
+                                        <div class="card-tarjeta">
+                                            
+                                            <div class="tab-tarjeta">Obsequios</div>
+                                            <div class="content-tarjeta">
+                                            <div class="gift-text">
+                                                    Si desean hacernos un obsequio,<br>
+                                                    pueden hacerlo en efectivo y depositarlo<br>
+                                                    en un sobre<br><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="mapModal" style="
+    display:none;
+    position:fixed;
+    z-index:1000;
+    left:0; top:0;
+    width:100%; height:100%;
+    background-color:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+">
+    <div style="
+        background:#fff;
+        margin:5% auto;
+        padding:10px;
+        width:90%;
+        max-width:600px;
+        border-radius:10px;
+        position:relative;
+        display:flex;
+        flex-direction:column;
+    ">
+        <!-- Botón cerrar -->
+            <button onclick="closeMapModal()" style="
+            position:absolute; top:10px; right:15px; 
+            cursor:pointer; font-size:30px; 
+            background:none; border:none; touch-action: manipulation;
+            ">✖</button>
+        <!-- Iframe con Google Maps -->
+        <iframe
+            id="mapFrame"
+            src="https://www.google.com/maps?q=45.10409354997301, -93.20296650968805&output=embed"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+
+        <!-- Botones de acción -->
+        <div style="display:flex; justify-content:space-around; margin-top:10px;">
+            <!-- Google Maps -->
+            <a href="https://www.google.com/maps?q=45.10409354997301, -93.20296650968805" target="_blank"
+               style="padding:10px 20px; background:#4285F4; color:white; border-radius:5px; text-decoration:none;">
+               Abrir en Google Maps
+            </a>
+            
+            <!-- Apple Maps -->
+            <a href="https://maps.apple.com/?q=45.10409354997301, -93.20296650968805" target="_blank"
+               style="padding:10px 20px; background:#000; color:white; border-radius:5px; text-decoration:none;">
+               Abrir en Apple Maps
+            </a>
+        </div>
+    </div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>

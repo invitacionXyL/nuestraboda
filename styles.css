@@ -1,0 +1,431 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #918ABD, #A3A8AD);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Escenario que mantiene todo centrado y escalado */
+.escenario {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center;
+}
+
+/* Fuente personalizada */
+@font-face {
+    font-family: 'Roshiaty';
+    src: url(fonts/Roshiaty.otf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AppleChancery';
+    src: url(fonts/AppleChancery.ttf) format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Animaciones */
+@keyframes pulso-resplandor {
+    0%, 60% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+    }
+    50% {
+        transform: scale(1.02);
+        filter: drop-shadow(0 0 30px rgba(191, 148, 208, 0.878));
+    }
+}
+.llama-la-atencion {
+    position: relative;
+    animation: pulso-resplandor 2.5s ease-in-out infinite;
+    overflow: hidden;
+}
+@keyframes pulso-resplandor2 {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+    }
+    50% {
+        transform: scale(1.07);
+        filter: drop-shadow(0 0 100px rgba(4, 4, 4, 0.878));
+    }
+}
+.llama-la-atencion2 {
+    position: relative;
+    animation: pulso-resplandor2 2.5s ease-in-out infinite;
+    overflow: hidden;
+}
+/* Contenedor 3D */
+.container {
+    margin-top: 5%;
+    perspective: 1000px;
+}
+
+/* Flip Card */
+.flip-card {
+    width: clamp(280px, 90vw, 600px);
+    /* Eliminar la propiedad height: height: clamp(180px, 38vh, 400px); */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    /* Agregar aspect-ratio para mantener la proporción de la tarjeta */
+    aspect-ratio: 1.5 / 1;
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flip-card-front,
+.flip-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    background-color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Card sobre */
+.card-sobre {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+.contenedor-imagen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Usamos Flexbox para centrar el div interno */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.imagen-con-margen {
+  /* Define el tamaño del div interior al 90% del contenedor padre */
+  width: 95%;
+  height: 95%;
+  
+  /* La clave está en esta línea: 'cover' hace que la imagen cubra todo el espacio
+     del contenedor, sin dejar huecos. Puede recortar los bordes si la proporción
+     no coincide. */
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Esto es opcional, pero mantiene el mouse interactivo fuera de la imagen de fondo */
+  pointer-events: none;
+}
+
+.imagentop {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('topinf.png');
+    background-size: clamp(520px, 60vw, 520px) clamp(200px, 25vh, 200px);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Solapa superior */
+.top-flap {
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    top: 0;
+    transform-style: preserve-3d;
+    transition: transform 1.5s;
+    transform-origin: top center;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.top-front {
+    z-index: 2;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 50% 100%, 0% 60%);
+}
+
+.top-back {
+    transform: rotateX(180deg);
+    z-index: 1;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 40%, 50% 0%, 0% 40%);
+    border-bottom: 2px solid black;
+}
+
+.top-front,
+.top-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    background-color: #2b2b2b;
+    color: #2b2b2b;
+    text-align: center;
+}
+
+/* Solapa inferior */
+.bottom-flap {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    transform-style: preserve-3d;
+    transition: transform 1.5s;
+    transform-origin: bottom center;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.bottom-front,
+.bottom-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    background-color: #333;
+    color: #2b2b2b;
+    border: #2b2b2b;
+    text-align: center;
+}
+
+.bottom-back {
+    transform: rotateX(-180deg);
+    border-top: 1px solid black;
+}
+
+/* Tarjetas */
+.tarjetas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3.8vh;
+    background: #333;
+    border-bottom: 5px solid black;
+    font-family: 'Segoe UI', cursive;
+}
+
+.slot-tarjeta {
+    flex: 1;
+    max-width: 100%;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.slot-tarjeta-bg {
+    background: #333;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    margin-top: 140px;
+}
+
+.card-tarjeta {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(90px);
+    width: 90%;
+    max-width: 300px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(36, 36, 36, 0.3);
+    transition: transform 0.5s ease;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.content-tarjeta {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.content-tarjeta .date {
+    font-family: 'Georgia Times';
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content-tarjeta .location {
+    font-family: 'COPPERPLATE';
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.content-tarjeta .ubi {
+    font-family: 'COPPERPLATE';
+    font-size: 10px;
+    color: #555;
+}
+
+.content-tarjeta .hora {
+    font-family: 'COPPERPLATE';
+    font-size: 13px;
+    color: #555;
+}
+
+.content-tarjeta .gift-text {
+    font-family: 'AppleChancery';
+    font-size: 14px;
+    color: #555;
+}
+
+.tab-tarjeta {
+    background: white;
+    text-align: center;
+    font-family: 'Roshiaty', cursive;
+    color: black;
+    font-size: 30px;
+    margin-top: 11px;
+}
+
+/* Estado activo */
+.slot-tarjeta.active .card-tarjeta {
+    transform: translateX(-50%) translateY(0%);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    z-index: 3;
+}
+
+.slot-tarjeta.active .content-tarjeta {
+    max-height: 200px;
+}
+
+/* Botón sello */
+.sello-btn {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    width: clamp(50px, 15vw, 70px);
+    height: clamp(50px, 15vw, 70px);
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 9999;
+    display: inline-block;
+    overflow: visible;
+}
+
+.sello-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sello-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    border: 3px solid #918ABD;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 1;
+    animation: ringPulse 1.6s ease-out infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes ringPulse {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+    60%  { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+/* Ajustes móviles */
+@media (max-width: 767px) {
+    .container {
+        margin-top: 15%;
+    }
+    .flip-card {
+        width: 100%;
+        width: clamp(280px, 90vw, 390px);
+        aspect-ratio: 3 / 2;
+    }
+    .imagentop {
+        top: 65%; /* sube un poco para que encaje mejor */
+        background-size: clamp(320px, 87vw, 320px) clamp(130px, 13vh, 130px);
+    }
+    .sello-btn {
+        top: 73%;
+        width: 50px;
+        height: 50px;
+    }
+}
+@media (min-width: 768px) {
+    .imagentop {
+        top: 65%; /* sube un poco para que encaje mejor */
+        background-size: clamp(520px, 60vw, 520px) clamp(200px, 25vh, 200px);
+    }
+}
+
